@@ -1,0 +1,16 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/supportdesk
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  ai:
+    gemini:
+      api-key: ${GEMINI_API_KEY}
+
+server:
+  port: 8080

@@ -1,0 +1,4 @@
+com\example\supportdesk\SupportDeskApplication.class
+com\example\supportdesk\service\GeminiClient.class
+com\example\supportdesk\security\SecurityConfig.class
+com\example\supportdesk\controller\TestController.class

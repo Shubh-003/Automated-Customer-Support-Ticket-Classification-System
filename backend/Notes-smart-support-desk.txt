@@ -1,0 +1,36 @@
+Notes-smart-support-desk
+
+gemini api:AIzaSyBA4ey3F32yEIzwSe3okF9iktTnRbEhrC4
+jwt: edcf57fb6818f2ac10f1ad852e82b685
+
+    public GeminiClient() {
+        this.webClient = WebClient.builder()
+                .baseUrl("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent")
+                .build();
+    }
+
+-------------Project Run---------------------
+open project in inteligia
+open docker desktop - running
+
+To check postre: docker ps   at root
+
+cd D:\smart-support-desk\backend
+mvn clean package -DskipTests
+
+cd D:\smart-support-desk\
+docker-compose down
+docker-compose up --build
+---------------------------------
+
+bhaii sun na gpt ke ekk hi chat me sab karna sahi nahi hoga toh mai ekk gpt me new project create karta hu hamm usme chat karenge taki sam content ekk hi jaga rahe.. OK but tum ye conversation yad rakhoge na hame yase continue karna haii
+
+
+Description:
+“Built an AI-powered support system using Spring Boot, Docker, PostgreSQL, and Google Gemini API with real-time classification and containerized deployment.”
+“I designed custom prompts and response sanitization to improve AI accuracy.”
+
+ab tu bolega:
+“Wahi AI ticket project…”
+Main samajh jaunga.
+Tu zero se explain nahi karega.
