@@ -1,38 +1,52 @@
 package com.example.supportdesk.service;
+
+import com.example.supportdesk.dto.AiClassificationResult;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Map;
+import java.time.Duration;
 
 @Service
 public class GeminiClient {
 
     private final WebClient webClient;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${gemini.api-key}")
     private String apiKey;
 
     public GeminiClient() {
+
         this.webClient = WebClient.builder()
                 .baseUrl("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent")
                 .build();
     }
 
-    public String classifyTicket(String description) {
-
-        System.out.println("===== GEMINI DEBUG START =====");
-
-        System.out.println("API KEY = " + apiKey);
+    /**
+     * Calls Gemini API and returns structured classification result
+     */
+    public AiClassificationResult classifyTicket(String description) {
 
         String prompt = """
-You are a customer support ticket classifier.
+You are an enterprise support ticket classifier.
 
-Return ONLY one word:
-Billing, Technical, Account, Feature, General.
+Return ONLY valid JSON.
+No explanation.
+No markdown.
+No extra text.
+
+Format:
+{
+  "category": "BILLING | TECHNICAL | ACCOUNT | FEATURE | GENERAL",
+  "priority": "LOW | MEDIUM | HIGH | CRITICAL",
+  "confidence": 0.0 to 1.0
+}
 
 Ticket:
-%s
+"%s"
 """.formatted(description);
 
         Map<String, Object> requestBody = Map.of(
@@ -45,58 +59,80 @@ Ticket:
 
         try {
 
-            Map response = webClient.post()
+            Map<?, ?> response = webClient.post()
                     .uri(uriBuilder -> uriBuilder
                             .queryParam("key", apiKey)
                             .build())
                     .bodyValue(requestBody)
                     .retrieve()
-                    .onStatus(
-                            status -> status.isError(),
-                            res -> res.bodyToMono(String.class)
-                                    .map(body -> new RuntimeException("HTTP ERROR: " + body))
-                    )
                     .bodyToMono(Map.class)
+                    .retry(3) // 👈 Retry 3 times if failed
                     .block();
 
-            System.out.println("RAW RESPONSE = " + response);
-
             if (response == null) {
-                System.out.println("RESPONSE IS NULL");
-                return "General";
+                return defaultResult();
             }
 
-            var candidates = (java.util.List<Map>) response.get("candidates");
-
-            System.out.println("CANDIDATES = " + candidates);
+            var candidates =
+                    (java.util.List<Map<?, ?>>) response.get("candidates");
 
             if (candidates == null || candidates.isEmpty()) {
-                System.out.println("NO CANDIDATES");
-                return "General";
+                return defaultResult();
             }
 
-            var content = (Map) candidates.get(0).get("content");
+            var content =
+                    (Map<?, ?>) candidates.get(0).get("content");
 
-            System.out.println("CONTENT = " + content);
+            var parts =
+                    (java.util.List<Map<?, ?>>) content.get("parts");
 
-            var parts = (java.util.List<Map>) content.get("parts");
+            if (parts == null || parts.isEmpty()) {
+                return defaultResult();
+            }
 
-            System.out.println("PARTS = " + parts);
+            String jsonText = parts.get(0).get("text").toString();
 
-            String result = parts.get(0).get("text").toString();
-
-            System.out.println("FINAL TEXT = " + result);
-
-            System.out.println("===== GEMINI DEBUG END =====");
-
-            return result.replaceAll("[^A-Za-z]", "").trim();
+            return parseResult(jsonText);
 
         } catch (Exception e) {
-            System.out.println("===== GEMINI ERROR =====");
+
+            System.err.println("===== GEMINI CALL FAILED =====");
             e.printStackTrace();
-            return "General";
+            System.err.println("=============================");
+
+            return defaultResult();
         }
     }
 
+    /**
+     * Parses AI JSON safely
+     */
+    private AiClassificationResult parseResult(String json) {
 
+        try {
+            return objectMapper.readValue(json, AiClassificationResult.class);
+        } catch (Exception e) {
+
+            System.err.println("===== JSON PARSE FAILED =====");
+            System.err.println(json);
+            e.printStackTrace();
+            System.err.println("============================");
+
+            return defaultResult();
+        }
+    }
+
+    /**
+     * Safe fallback (system never breaks)
+     */
+    private AiClassificationResult defaultResult() {
+
+        AiClassificationResult result = new AiClassificationResult();
+
+        result.setCategory("GENERAL");
+        result.setPriority("LOW");
+        result.setConfidence(0.0);
+
+        return result;
+    }
 }

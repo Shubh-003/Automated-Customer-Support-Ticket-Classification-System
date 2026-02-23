@@ -14,6 +14,7 @@ open project in inteligia
 open docker desktop - running
 
 To check postre: docker ps   at root
+docker exec -it smart-support-desk-db-1 psql -U postgres    // to check tbl
 
 cd D:\smart-support-desk\backend
 mvn clean package -DskipTests
@@ -22,6 +23,12 @@ cd D:\smart-support-desk\
 docker-compose down
 docker-compose up --build
 ---------------------------------
+DB(root)
+docker exec -it smart-support-desk-db-1 psql -U postgres
+postgres=# \l
+postgres=# \c supportdesk
+
+
 
 bhaii sun na gpt ke ekk hi chat me sab karna sahi nahi hoga toh mai ekk gpt me new project create karta hu hamm usme chat karenge taki sam content ekk hi jaga rahe.. OK but tum ye conversation yad rakhoge na hame yase continue karna haii
 
@@ -34,3 +41,39 @@ ab tu bolega:
 “Wahi AI ticket project…”
 Main samajh jaunga.
 Tu zero se explain nahi karega.
+
+
+=================================================
+
+##first time:
+git init
+git remote add origin https://github.com/Shubh-003/Automated-Customer-Support-Ticket-Classification-System.git
+git remote -v
+git add .
+git commit -m "Initial commit - Automated Ticket System"
+git branch -M main
+git push -u origin main
+
+git pull origin main --rebase
+git add .
+git rebase --continue
+git push -u origin main
+---------------------------------------------------
+##Regular git :
+git status
+git diff
+
+git add .           OR          git add src/main/java/service/TicketService.java
+git commit -m "feat: add priority prediction logic"
+git push
+
+
+
+| Type     | Use            |
+| -------- | -------------- |
+| feat     | New feature    |
+| fix      | Bug fix        |
+| refactor | Code cleanup   |
+| docs     | README changes |
+| test     | Add tests      |
+

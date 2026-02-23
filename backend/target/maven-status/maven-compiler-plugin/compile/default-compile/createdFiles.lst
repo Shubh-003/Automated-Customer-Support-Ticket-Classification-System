@@ -1,4 +1,10 @@
 com\example\supportdesk\SupportDeskApplication.class
+com\example\supportdesk\repository\TicketRepository.class
+com\example\supportdesk\model\Ticket$TicketBuilder.class
+com\example\supportdesk\dto\TicketRequest.class
+com\example\supportdesk\service\TicketService.class
+com\example\supportdesk\model\Ticket.class
 com\example\supportdesk\service\GeminiClient.class
+com\example\supportdesk\controller\TicketController.class
+com\example\supportdesk\dto\AiClassificationResult.class
 com\example\supportdesk\security\SecurityConfig.class
-com\example\supportdesk\controller\TestController.class

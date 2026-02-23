@@ -1,4 +1,9 @@
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\controller\TicketController.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\Ticket.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\repository\TicketRepository.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\GeminiClient.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\SupportDeskApplication.java
-D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\controller\TestController.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\SecurityConfig.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\TicketService.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\AiClassificationResult.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\TicketRequest.java
