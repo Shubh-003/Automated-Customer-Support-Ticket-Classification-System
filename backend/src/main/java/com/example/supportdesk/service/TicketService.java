@@ -8,6 +8,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +17,7 @@ public class TicketService {
 
     private final TicketRepository ticketRepository;
     private final GeminiClient geminiClient;
+    private final AiResultValidator validator;
 
     public Ticket createTicket(TicketRequest request, String user) {
 
@@ -35,16 +38,23 @@ public class TicketService {
 
     @Async
     public void classifyAsync(Long ticketId, String description) {
-
-        AiClassificationResult result =
+//
+        // 1️⃣ Call AI
+        AiClassificationResult aiResult =
                 geminiClient.classifyTicket(description);
+
+        // 2️⃣ Validate AI Output
+        AiResultValidator.ValidatedResult validated =
+                validator.validate(aiResult);
 
         Ticket ticket = ticketRepository.findById(ticketId).orElseThrow();
 
-        ticket.setCategory(result.getCategory());
-        ticket.setPriority(result.getPriority());
-        ticket.setConfidence(result.getConfidence());
+        // 4️⃣ Apply Safe Values
+        ticket.setCategory(validated.category());
+        ticket.setPriority(validated.priority());
+        ticket.setConfidence(validated.confidence());
         ticket.setStatus("OPEN");
+
 
         ticketRepository.save(ticket);
     }

@@ -22,6 +22,11 @@ mvn clean package -DskipTests
 cd D:\smart-support-desk\
 docker-compose down
 docker-compose up --build
+~~~~~~OR~~~~~
+cd D:\smart-support-desk\
+docker-compose down -v
+docker-compose up --build
+
 ---------------------------------
 DB(root)
 docker exec -it smart-support-desk-db-1 psql -U postgres
@@ -77,3 +82,12 @@ git push
 | docs     | README changes |
 | test     | Add tests      |
 
+
+
+=============================================
+TicketCategory: "BILLING | TECHNICAL | ACCOUNT | FEATURE | GENERAL",
+TicketPriority: "LOW,MEDIUM,HIGH,CRITICAL"
+
+Where categoris are mentiones in code
+- GeminiClient - Service - prompt
+- TicketCategory class - model

@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Map;
 import java.time.Duration;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class GeminiClient {
@@ -18,19 +19,7 @@ public class GeminiClient {
     @Value("${gemini.api-key}")
     private String apiKey;
 
-    public GeminiClient() {
-
-        this.webClient = WebClient.builder()
-                .baseUrl("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent")
-                .build();
-    }
-
-    /**
-     * Calls Gemini API and returns structured classification result
-     */
-    public AiClassificationResult classifyTicket(String description) {
-
-        String prompt = """
+    private static final String PROMPT_TEMPLATE = """
 You are an enterprise support ticket classifier.
 
 Return ONLY valid JSON.
@@ -47,7 +36,22 @@ Format:
 
 Ticket:
 "%s"
-""".formatted(description);
+""";
+
+//    Constructor
+    public GeminiClient() {
+
+        this.webClient = WebClient.builder()
+                .baseUrl("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent")
+                .build();
+    }
+
+    /**
+     * Calls Gemini API and returns structured classification result
+     */
+    public AiClassificationResult classifyTicket(String description) {
+
+        String prompt = PROMPT_TEMPLATE.formatted(description);
 
         Map<String, Object> requestBody = Map.of(
                 "contents", new Object[]{
@@ -59,49 +63,43 @@ Ticket:
 
         try {
 
-            Map<?, ?> response = webClient.post()
+            Map response = webClient.post()
                     .uri(uriBuilder -> uriBuilder
                             .queryParam("key", apiKey)
                             .build())
                     .bodyValue(requestBody)
                     .retrieve()
                     .bodyToMono(Map.class)
-                    .retry(3) // 👈 Retry 3 times if failed
                     .block();
 
-            if (response == null) {
-                return defaultResult();
-            }
+            var candidates = (java.util.List<Map>) response.get("candidates");
 
-            var candidates =
-                    (java.util.List<Map<?, ?>>) response.get("candidates");
+            var content = (Map) candidates.get(0).get("content");
 
-            if (candidates == null || candidates.isEmpty()) {
-                return defaultResult();
-            }
-
-            var content =
-                    (Map<?, ?>) candidates.get(0).get("content");
-
-            var parts =
-                    (java.util.List<Map<?, ?>>) content.get("parts");
-
-            if (parts == null || parts.isEmpty()) {
-                return defaultResult();
-            }
+            var parts = (java.util.List<Map>) content.get("parts");
 
             String jsonText = parts.get(0).get("text").toString();
 
-            return parseResult(jsonText);
+            return new ObjectMapper()
+                    .readValue(jsonText, AiClassificationResult.class);
 
         } catch (Exception e) {
-
-            System.err.println("===== GEMINI CALL FAILED =====");
-            e.printStackTrace();
-            System.err.println("=============================");
-
-            return defaultResult();
+            return fallback();
         }
+    }
+
+    /**
+     * Safe fallback (system never breaks)
+     */
+    private AiClassificationResult fallback() {
+
+        AiClassificationResult r = new AiClassificationResult();
+
+        r.setCategory("GENERAL");
+        r.setPriority("LOW");
+        r.setConfidence(0.5);
+
+        return r;
     }
 
     /**

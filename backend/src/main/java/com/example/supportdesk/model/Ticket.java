@@ -24,9 +24,15 @@ public class Ticket {
     @Column(length = 5000)
     private String description;
 
-    private String category;
+//    private String category;
 
-    private String priority;
+//    private String priority;
+
+    @Enumerated(EnumType.STRING)
+    private TicketCategory category;
+
+    @Enumerated(EnumType.STRING)
+    private TicketPriority priority;
 
     private Double confidence;
 
@@ -35,4 +41,7 @@ public class Ticket {
     private String createdBy;
 
     private LocalDateTime createdAt;
+
+
+
 }
