@@ -95,6 +95,12 @@ Where categoris are mentiones in code
 
 
 
+DB tables :
+tickets
+users
+
+
+
 DB_USER=postgres
 DB_PASSWORD=postgres
 GEMINI_API_KEY=AIzaSyA9o5gzk7U163tprYNmfRhua_kAGTlTa_k
