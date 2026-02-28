@@ -1,7 +1,5 @@
 Notes-smart-support-desk
 
-gemini api:AIzaSyBA4ey3F32yEIzwSe3okF9iktTnRbEhrC4
-jwt: edcf57fb6818f2ac10f1ad852e82b685
 
     public GeminiClient() {
         this.webClient = WebClient.builder()
@@ -17,7 +15,7 @@ To check postre: docker ps   at root
 docker exec -it smart-support-desk-db-1 psql -U postgres    // to check tbl
 
 cd D:\smart-support-desk\backend
-mvn clean package -DskipTests
+mvn clean package -DskipTests       -- target file error/ POM
 
 cd D:\smart-support-desk\
 docker-compose down
@@ -35,7 +33,6 @@ postgres=# \c supportdesk
 
 
 
-bhaii sun na gpt ke ekk hi chat me sab karna sahi nahi hoga toh mai ekk gpt me new project create karta hu hamm usme chat karenge taki sam content ekk hi jaga rahe.. OK but tum ye conversation yad rakhoge na hame yase continue karna haii
 
 
 Description:
@@ -46,8 +43,25 @@ ab tu bolega:
 “Wahi AI ticket project…”
 Main samajh jaunga.
 Tu zero se explain nahi karega.
+---------------------------------------
+JWT Advance:
+Login →
+   Access Token (15 min)
+   Refresh Token (7 days)
+Access expires →
+   Client calls /refresh →
+   New Access Token generated
+Logout →
+   Refresh token revoked
 
-
+# TARGET DESIGN for JWT:
+ Access Token:
+   15 minutes
+   Used on every API call
+ Refresh Token:
+  Stored in DB
+  7 days expiry
+  Used only to generate new access token
 =================================================
 
 ##first time:
@@ -93,15 +107,11 @@ Where categoris are mentiones in code
 - TicketCategory class - model
 
 
-
+Login = Show ID → Get Pass
+API = Show Pass → Enter
 
 DB tables :
 tickets
 users
 
 
-
-DB_USER=postgres
-DB_PASSWORD=postgres
-GEMINI_API_KEY=AIzaSyA9o5gzk7U163tprYNmfRhua_kAGTlTa_k
-JWT_SECRET=edcf57fb6818f2ac10f1ad852e82b685

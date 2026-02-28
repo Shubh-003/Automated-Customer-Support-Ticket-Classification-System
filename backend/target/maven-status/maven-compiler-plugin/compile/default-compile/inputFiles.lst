@@ -3,12 +3,15 @@ D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\Ticket
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\repository\UserRepository.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\controller\AuthController.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\LoginRequest.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\jwt\JwtAuthFilter.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\SecurityConfig.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\service\CustomUserDetailsService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\RegisterRequest.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\Role.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\repository\TicketRepository.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\GeminiClient.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\TicketCategory.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\jwt\JwtService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\SupportDeskApplication.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\TicketPriority.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\entity\User.java

@@ -12,5 +12,9 @@ spring:
     gemini:
       api-key: ${GEMINI_API_KEY}
 
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}   # 1 day
+
 server:
   port: 8080
