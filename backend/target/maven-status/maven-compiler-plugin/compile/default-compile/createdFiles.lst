@@ -2,15 +2,18 @@ com\example\supportdesk\repository\TicketRepository.class
 com\example\supportdesk\dto\LoginRequest.class
 com\example\supportdesk\dto\RegisterRequest.class
 com\example\supportdesk\service\AiResultValidator.class
+com\example\supportdesk\entity\RefreshToken.class
 com\example\supportdesk\model\Role.class
 com\example\supportdesk\security\jwt\JwtService.class
 com\example\supportdesk\service\AiResultValidator$ValidatedResult.class
+com\example\supportdesk\repository\RefreshTokenRepository.class
 com\example\supportdesk\model\Ticket$TicketBuilder.class
 com\example\supportdesk\model\TicketPriority.class
 com\example\supportdesk\controller\AuthController.class
 com\example\supportdesk\repository\UserRepository.class
 com\example\supportdesk\service\TicketService.class
 com\example\supportdesk\controller\TicketController.class
+com\example\supportdesk\entity\RefreshToken$RefreshTokenBuilder.class
 com\example\supportdesk\security\SecurityConfig.class
 com\example\supportdesk\SupportDeskApplication.class
 com\example\supportdesk\security\jwt\JwtAuthFilter.class
@@ -21,4 +24,5 @@ com\example\supportdesk\service\GeminiClient.class
 com\example\supportdesk\dto\AiClassificationResult.class
 com\example\supportdesk\model\TicketCategory.class
 com\example\supportdesk\entity\User$UserBuilder.class
+com\example\supportdesk\security\service\RefreshTokenService.class
 com\example\supportdesk\model\Ticket.class

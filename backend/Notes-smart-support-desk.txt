@@ -62,6 +62,24 @@ Logout →
   Stored in DB
   7 days expiry
   Used only to generate new access token
+
+  Token Rotation (Advanced Security)
+    When refreshing:
+    Instead of just issuing new access token:
+    Revoke old refresh token
+    Create new refresh token
+  This prevents replay attacks.
+
+Blacklist Access Tokens (Optional but Elite Level):
+
+
+
+Access Token → short-lived → used for APIs
+Refresh Token → long-lived → used to get new access
+When refresh token dies:
+Session is over.
+
+
 =================================================
 
 ##first time:
@@ -96,6 +114,11 @@ git push
 | docs     | README changes |
 | test     | Add tests      |
 
+POSTMAN:
+registration api: user & password : POST http://localhost:8080/api/auth/register
+LOGIN API : user & password : POST http://localhost:8080/api/auth/login -> refreshToken & accessToken(copy)
+Ticket api : Autherization: accessToken
+Refresh api : refreshToken(from login) & newAccessToken(past in Token Autherization)
 
 
 =============================================

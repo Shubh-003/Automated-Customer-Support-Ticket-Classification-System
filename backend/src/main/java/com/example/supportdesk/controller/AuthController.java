@@ -1,10 +1,12 @@
 package com.example.supportdesk.controller;
 
 import com.example.supportdesk.dto.*;
+import com.example.supportdesk.entity.RefreshToken;
 import com.example.supportdesk.entity.User;
 import com.example.supportdesk.model.Role;
 import com.example.supportdesk.repository.UserRepository;
 import com.example.supportdesk.security.jwt.JwtService;
+import com.example.supportdesk.security.service.RefreshTokenService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +24,8 @@ public class AuthController {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;   // ✅ Inject JWT service
+    private final JwtService jwtService;   // Inject JWT service
+    private final RefreshTokenService refreshTokenService;
 
     // ---------------- REGISTER ----------------
     @PostMapping("/register")
@@ -73,9 +76,62 @@ public class AuthController {
                 );
 
         // ✅ Generate JWT
-        String token = jwtService.generateToken(userDetails);
+//        String token = jwtService.generateToken(userDetails);
 
         // ✅ Return JSON
-        return Map.of("token", token);
+        String accessToken = jwtService.generateAccessToken(userDetails);
+
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getUsername());
+
+        return Map.of(
+//                "token", token,
+                "accessToken", accessToken,
+                "refreshToken", refreshToken.getToken()
+        );
     }
+
+//    refreshTokenService
+@PostMapping("/refresh")
+public Map<String, String> refreshToken(
+        @RequestBody Map<String,String> request){
+
+    String requestToken = request.get("refreshToken");
+
+    RefreshToken refreshToken =
+            refreshTokenService.verifyToken(requestToken);
+
+    User user = refreshToken.getUser();
+
+    UserDetails userDetails =
+            new org.springframework.security.core.userdetails.User(
+                    user.getUsername(),
+                    user.getPassword(),
+                    List.of(() -> user.getRole().name())
+            );
+
+    String newAccessToken =
+            jwtService.generateAccessToken(userDetails);
+
+//  Token Rotation (Advanced Security)
+    refreshTokenService.revokeToken(requestToken);
+
+    RefreshToken newRefresh =
+            refreshTokenService.createRefreshToken(user.getUsername());
+
+    return Map.of(
+            "accessToken", newAccessToken,
+            "refreshToken", newRefresh.getToken()
+    );
+}
+
+//    Logout Endpoint
+@PostMapping("/logout")
+public String logout(@RequestBody Map<String,String> request){
+
+    refreshTokenService.revokeToken(
+            request.get("refreshToken"));
+
+    return "Logged out";
+}
+
 }

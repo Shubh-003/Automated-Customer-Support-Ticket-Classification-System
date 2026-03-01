@@ -21,12 +21,21 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long expiration;
 
-    public String generateToken(UserDetails user) {
-
+//    public String generateToken(UserDetails user) {
+//
+//        return Jwts.builder()
+//                .subject(user.getUsername())
+//                .issuedAt(new Date())
+//                .expiration(new Date(System.currentTimeMillis() + expiration))
+//                .signWith(getKey())
+//                .compact();
+//    }
+//    Access token  ,  Refresh token
+    public String generateAccessToken(UserDetails user) {
         return Jwts.builder()
                 .subject(user.getUsername())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + expiration))
+                .expiration(new Date(System.currentTimeMillis() + 900000)) // 15 min= 900000
                 .signWith(getKey())
                 .compact();
     }
