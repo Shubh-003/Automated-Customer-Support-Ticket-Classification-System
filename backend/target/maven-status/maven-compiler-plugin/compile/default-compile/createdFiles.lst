@@ -1,6 +1,7 @@
 com\example\supportdesk\repository\TicketRepository.class
 com\example\supportdesk\dto\LoginRequest.class
 com\example\supportdesk\dto\RegisterRequest.class
+com\example\supportdesk\security\CustomAccessDeniedHandler.class
 com\example\supportdesk\service\AiResultValidator.class
 com\example\supportdesk\entity\RefreshToken.class
 com\example\supportdesk\model\Role.class

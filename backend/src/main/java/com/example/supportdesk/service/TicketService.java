@@ -8,6 +8,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
@@ -40,8 +42,10 @@ public class TicketService {
     public void classifyAsync(Long ticketId, String description) {
 //
         // 1️⃣ Call AI
+        System.out.println("Calling Gemini...");
         AiClassificationResult aiResult =
                 geminiClient.classifyTicket(description);
+        System.out.println("Gemini Response: " + aiResult);
 
         // 2️⃣ Validate AI Output
         AiResultValidator.ValidatedResult validated =
@@ -57,5 +61,17 @@ public class TicketService {
 
 
         ticketRepository.save(ticket);
+    }
+
+    public List<Ticket> getMyTickets(String username){
+        return ticketRepository.findByCreatedBy(username);
+    }
+
+    public List<Ticket> getAllTickets(){
+        return ticketRepository.findAll();
+    }
+
+    public void deleteTicket(Long id){
+        ticketRepository.deleteById(id);
     }
 }

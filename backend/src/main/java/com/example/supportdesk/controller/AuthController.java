@@ -10,6 +10,7 @@ import com.example.supportdesk.security.service.RefreshTokenService;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class AuthController {
         User user = User.builder()
                 .username(request.username())
                 .password(passwordEncoder.encode(request.password()))
-                .role(Role.USER)
+                .role(Role.USER) // by default ROLE USER at public register endpoint
                 .build();
 
         userRepository.save(user);
@@ -72,7 +73,9 @@ public class AuthController {
                 new org.springframework.security.core.userdetails.User(
                         user.getUsername(),
                         user.getPassword(),
-                        List.of(() -> user.getRole().name())
+                        List.of(
+                                new SimpleGrantedAuthority("ROLE_" + user.getRole().name())
+                        )
                 );
 
         // ✅ Generate JWT
@@ -106,7 +109,9 @@ public Map<String, String> refreshToken(
             new org.springframework.security.core.userdetails.User(
                     user.getUsername(),
                     user.getPassword(),
-                    List.of(() -> user.getRole().name())
+                    List.of(
+                            new SimpleGrantedAuthority("ROLE_" + user.getRole().name())
+                    )
             );
 
     String newAccessToken =

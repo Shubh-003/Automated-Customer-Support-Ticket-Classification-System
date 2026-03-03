@@ -72,14 +72,29 @@ Logout →
 
 Blacklist Access Tokens (Optional but Elite Level):
 
-
-
 Access Token → short-lived → used for APIs
 Refresh Token → long-lived → used to get new access
 When refresh token dies:
 Session is over.
 
+ROLE-BASED ACCESS CONTROL (RBAC) Autherization:
+@EnableMethodSecurity allow to use @PreAuthorize
+@PreAuthorize("hasAnyRole('USER','AGENT','ADMIN')") -> createTicket
+@PreAuthorize("hasAnyRole('ADMIN','AGENT')") -> viewAllTicket
+@PreAuthorize("hasRole('ADMIN')") -> deleteTicket
+RoleHierarchy Bean in securityConfig
 
+-----------
+🧠 Strategy
+We implement:
+Per-IP rate limit
+Different limit for:
+Login endpoint
+Ticket creation
+In-memory first (clean & simple)
+Later can move to Redis
+We will use:
+    👉 Bucket4j (industry standard)
 =================================================
 
 ##first time:
@@ -103,7 +118,9 @@ git diff
 git add .           OR          git add src/main/java/service/TicketService.java
 git commit -m "feat: add priority prediction logic"
 git push
-
+--------------------------------------------------------------
+git filter-branch --force --index-filter "git rm --cached --ignore-unmatch .env" --prune-empty --tag-name-filter cat -- --all
+git push --force
 
 
 | Type     | Use            |
@@ -119,6 +136,9 @@ registration api: user & password : POST http://localhost:8080/api/auth/register
 LOGIN API : user & password : POST http://localhost:8080/api/auth/login -> refreshToken & accessToken(copy)
 Ticket api : Autherization: accessToken
 Refresh api : refreshToken(from login) & newAccessToken(past in Token Autherization)
+
+if i want to use All/delete api endpoint then i need to login Admin/Agent and get their accessToken and
+use that token in all/delete enpoint Autherization abd get responce.
 
 
 =============================================
@@ -137,4 +157,26 @@ DB tables :
 tickets
 users
 
+Authorization and permission:
+| Action           | USER | AGENT | ADMIN |
+| ---------------- | ---- | ----- | ----- |
+| Create Ticket    | ✅    | ✅     | ✅     |
+| View Own Ticket  | ✅    | ✅     | ✅     |
+| View All Tickets | ❌    | ✅     | ✅     |
+| Update Status    | ❌    | ✅     | ✅     |
+| Delete Ticket    | ❌    | ❌     | ✅     |
 
+PS D:\smart-support-desk> docker exec -it smart-support-desk-db-1 psql -U postgres
+postgres=# \c supportdesk
+supportdesk=# select * from users;
+insert into users (username, password, role, enabled) values ('admin', '$2a$10$CygxFYuhLOTWuX6uSTCWyeN0J2qW6ul59UewWFgNienDZz81gV3Ym', 'ADMIN', true);
+insert into users (username, password, role, enabled) values ('agent', '$2a$10$fJfCUxa1TmMneYk9N/6/Au62ztUF6GzyKRXa0AYEbJwl0C2J9zWd', 'AGENT', true);
+
+==================================================
+DB_USER = Your_Db_Name
+DB_PASSWORD = Your_DB_Password
+
+GEMINI_API_KEY = Your_ApiKey
+
+JWT_SECRET = Your_Secret
+JWT_EXPIRATION: e.g.86400000
