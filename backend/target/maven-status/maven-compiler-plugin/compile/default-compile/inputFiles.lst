@@ -10,6 +10,7 @@ D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\repository\T
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\TicketCategory.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\jwt\JwtService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\repository\AuditLogRepository.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\exception\ErrorResponse.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\service\RefreshTokenService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\TicketPriority.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\CustomAccessDeniedHandler.java
@@ -25,6 +26,7 @@ D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\audit\Audita
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\GeminiClient.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\entity\AuditLog.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\SupportDeskApplication.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\exception\GlobalExceptionHandler.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\config\OpenApiConfig.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\TicketService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\AiClassificationResult.java
