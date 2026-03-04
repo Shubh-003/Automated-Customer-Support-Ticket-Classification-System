@@ -28,6 +28,17 @@ import java.io.IOException;
         }
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+
+        String path = request.getServletPath();
+
+        return path.startsWith("/api/auth")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/v3/api-docs");
+    }
+
+
+    @Override
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -35,7 +46,17 @@ import java.io.IOException;
     ) throws ServletException, IOException {
 
         System.out.println("Request: " + request.getServletPath());
+//        swagger
+        String path = request.getServletPath();
 
+        if (path.startsWith("/api/auth") ||
+                path.startsWith("/swagger-ui") ||
+                path.startsWith("/v3/api-docs")) {
+
+            chain.doFilter(request, response);
+            return;
+        }
+//
         String header = request.getHeader("Authorization");
 
         if (header == null || !header.startsWith("Bearer ")) {

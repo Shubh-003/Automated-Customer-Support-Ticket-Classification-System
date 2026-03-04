@@ -25,5 +25,6 @@ D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\audit\Audita
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\GeminiClient.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\entity\AuditLog.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\SupportDeskApplication.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\config\OpenApiConfig.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\TicketService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\AiClassificationResult.java

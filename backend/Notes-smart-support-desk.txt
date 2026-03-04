@@ -15,7 +15,7 @@ To check postre: docker ps   at root
 docker exec -it smart-support-desk-db-1 psql -U postgres    // to check tbl
 
 cd D:\smart-support-desk\backend
-mvn clean package -DskipTests       -- target file error/ POM
+mvn clean package -DskipTests       // target file error/ POM
 
 cd D:\smart-support-desk\
 docker-compose down
@@ -88,6 +88,12 @@ RoleHierarchy Bean in securityConfig
 PHASE 5 — AUDIT LOGGING
 Who did what, when, and from where?
 No manual logging inside controller. We use AOP (Aspect-Oriented Programming
+
+SWAGGER:
+Professional API documentation
+✔ Self-testable endpoints
+✔ Frontend developer integration
+✔ Easy demo for recruiters
 =================================================
 
 ##first time:
@@ -164,6 +170,11 @@ postgres=# \c supportdesk
 supportdesk=# select * from users;
 insert into users (username, password, role, enabled) values ('admin', '$2a$10$CygxFYuhLOTWuX6uSTCWyeN0J2qW6ul59UewWFgNienDZz81gV3Ym', 'ADMIN', true);
 insert into users (username, password, role, enabled) values ('agent', '$2a$10$fJfCUxa1TmMneYk9N/6/Au62ztUF6GzyKRXa0AYEbJwl0C2J9zWd', 'AGENT', true);
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
 
 ==================================================
 DB_USER = Your_Db_Name
@@ -173,3 +184,4 @@ GEMINI_API_KEY = Your_ApiKey
 
 JWT_SECRET = Your_Secret
 JWT_EXPIRATION: e.g.86400000
+

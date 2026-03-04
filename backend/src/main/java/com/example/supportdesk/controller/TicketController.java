@@ -5,6 +5,7 @@ import com.example.supportdesk.dto.TicketRequest;
 import com.example.supportdesk.model.Ticket;
 import com.example.supportdesk.service.TicketService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/tickets")
 @RequiredArgsConstructor
