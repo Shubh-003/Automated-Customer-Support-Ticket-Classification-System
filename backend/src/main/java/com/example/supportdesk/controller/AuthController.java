@@ -1,5 +1,6 @@
 package com.example.supportdesk.controller;
 
+import com.example.supportdesk.audit.Auditable;
 import com.example.supportdesk.dto.*;
 import com.example.supportdesk.entity.RefreshToken;
 import com.example.supportdesk.entity.User;
@@ -49,6 +50,7 @@ public class AuthController {
 
     // ---------------- LOGIN ----------------
     @PostMapping("/login")
+    @Auditable(action="LOGIN", entity="USER")
     public Map<String, String> login(@RequestBody LoginRequest request) {
 
         User user = userRepository

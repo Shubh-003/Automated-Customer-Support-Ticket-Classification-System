@@ -85,16 +85,9 @@ ROLE-BASED ACCESS CONTROL (RBAC) Autherization:
 RoleHierarchy Bean in securityConfig
 
 -----------
-🧠 Strategy
-We implement:
-Per-IP rate limit
-Different limit for:
-Login endpoint
-Ticket creation
-In-memory first (clean & simple)
-Later can move to Redis
-We will use:
-    👉 Bucket4j (industry standard)
+PHASE 5 — AUDIT LOGGING
+Who did what, when, and from where?
+No manual logging inside controller. We use AOP (Aspect-Oriented Programming
 =================================================
 
 ##first time:

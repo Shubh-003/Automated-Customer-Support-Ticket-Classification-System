@@ -1,5 +1,6 @@
 package com.example.supportdesk.controller;
 
+import com.example.supportdesk.audit.Auditable;
 import com.example.supportdesk.dto.TicketRequest;
 import com.example.supportdesk.model.Ticket;
 import com.example.supportdesk.service.TicketService;
@@ -23,6 +24,7 @@ public class TicketController {
     // ---------------- CREATE ----------------
     @PostMapping
     @PreAuthorize("hasAnyRole('USER','AGENT','ADMIN')")
+    @Auditable(action="CREATE", entity="TICKET")
     public Ticket create(
             @RequestBody @Valid TicketRequest request,
             Authentication authentication) {
@@ -53,6 +55,7 @@ public class TicketController {
     // ---------------- DELETE ----------------
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @Auditable(action="DELETE", entity="TICKET")
     public String deleteTicket(@PathVariable Long id) {
 
         ticketService.deleteTicket(id);
