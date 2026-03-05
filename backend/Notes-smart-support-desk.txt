@@ -94,6 +94,11 @@ Professional API documentation
 ✔ Self-testable endpoints
 ✔ Frontend developer integration
 ✔ Easy demo for recruiters
+
+PHASE 8 — DOCKER PRODUCTION OPTIMIZATION
+Docker builds jar internally
+
+
 =================================================
 
 ##first time:
