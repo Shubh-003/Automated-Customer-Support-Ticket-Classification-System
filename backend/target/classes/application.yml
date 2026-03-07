@@ -1,20 +1,6 @@
-
-spring:
-  datasource:
-    url: jdbc:postgresql://db:5432/supportdesk
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-  ai:
-    gemini:
-      api-key: ${GEMINI_API_KEY}
-
 jwt:
-  secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION}   # 1 day
+  secret: ${JWT_SECRET:a9f3e72d8c1b45f6e9a21d7c0b4f89e2a5c7d1f8e6b9a0d4c3f2e7b5a1c9}
+  expiration: ${JWT_EXPIRATION:86400000}
 
 server:
   port: 8080
@@ -24,3 +10,31 @@ management:
     web:
       exposure:
         include: health
+
+#
+#
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://db:5432/supportdesk
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#  ai:
+#    gemini:
+#      api-key: ${GEMINI_API_KEY}
+#
+#jwt:
+#  secret: ${JWT_SECRET}
+#  expiration: ${JWT_EXPIRATION}   # 1 day
+#
+#server:
+#  port: 8080
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health

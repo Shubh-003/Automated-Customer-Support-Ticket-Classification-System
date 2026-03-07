@@ -1,0 +1,16 @@
+#2. application-dev.yml (Local Development)
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/supportdesk  # 5433 bez of  pgAdmin 4 server running on prt 5433
+    username: postgres
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  ai:
+    gemini:
+      api-key:${GEMINI_API_KEY:dummy-key}
