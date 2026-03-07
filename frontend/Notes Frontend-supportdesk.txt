@@ -1,0 +1,61 @@
+==== HOW TO RUN =====
+cd D:\smart-support-desk\frontend
+npm run dev
+http://localhost:5174/
+
+
+
+
+
+
+
+
+
+
+=============================
+## How will USER vs ADMIN/AGENT UI be different?
+We will read the role from JWT login response.
+Your backend already returns role inside the token (or user info).
+Example login response:
+{
+  "accessToken": "...",
+  "refreshToken": "...",
+  "role": "ADMIN"
+}
+
+We store role in:
+AuthContext
+
+Example Auth State
+{
+  user: "shubh",
+  role: "ADMIN",
+  token: "..."
+}
+
+
+====================================
+src
+ ├── api
+ │    └── axiosClient.js
+ │
+ ├── auth
+ │    └── AuthContext.jsx
+ │
+ ├── pages
+ │    ├── LoginPage.jsx
+ │    ├── RegisterPage.jsx
+ │    ├── Dashboard.jsx
+ │    ├── CreateTicket.jsx
+ │    ├── MyTickets.jsx
+ │    └── AdminTickets.jsx
+ │
+ ├── components
+ │    ├── Navbar.jsx
+ │    └── ProtectedRoute.jsx
+ │
+ ├── hooks
+ │    └── useAuth.js
+ │
+ ├── App.jsx
+ └── main.jsx
