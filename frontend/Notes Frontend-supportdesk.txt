@@ -34,6 +34,22 @@ Example Auth State
 }
 
 
+Phase 2: Authentication UI (Login + Register)
+axiosClient.js:
+ const axiosClient = axios.create({
+               baseURL: "http://localhost:8080/api",
+             })
+store token at localstorage:  const token = localStorage.getItem("accessToken");
+
+-> Now every request automatically attaches the JWT.
+
+RegisterPage: usestte: usename and password then handleSubmit for axios.post("/auth/register")
+
+CORS configuration in securityConfig.java- CorsConfigurationSource bean
+🔐 Important Production Note:
+Later in production we usually allow: https://yourdomain.com  not *.
+Example: config.setAllowedOrigins(List.of("https://supportdesk.com"));
+
 ====================================
 src
  ├── api
