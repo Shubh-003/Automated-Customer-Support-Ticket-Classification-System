@@ -2,10 +2,12 @@ import { useState } from "react";
 import axios from "../api/axiosClient";
 import { useNavigate } from "react-router-dom";
 
+import { useAuth } from "../auth/AuthContext";
+
 function LoginPage(){
 
   const navigate = useNavigate();
-
+  const { login } = useAuth();
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
 
@@ -20,10 +22,7 @@ function LoginPage(){
         password
       });
 
-      localStorage.setItem(
-        "accessToken",
-        res.data.accessToken
-      );
+      login(res.data.accessToken);
 
       localStorage.setItem(
         "refreshToken",
