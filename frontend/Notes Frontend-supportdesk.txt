@@ -1,3 +1,12 @@
+DB_USER = Your_Db_Name
+DB_PASSWORD = Your_DB_Password
+
+GEMINI_API_KEY = Your_ApiKey
+
+JWT_SECRET = Your_Secret
+JWT_EXPIRATION: e.g.86400000
+
+
 ==== HOW TO RUN =====
 cd D:\smart-support-desk\frontend
 npm run dev
@@ -50,6 +59,9 @@ CORS configuration in securityConfig.java- CorsConfigurationSource bean
 Later in production we usually allow: https://yourdomain.com  not *.
 Example: config.setAllowedOrigins(List.of("https://supportdesk.com"));
 
+
+Phase 5 — Role-Based Dashboard (User / Agent / Admin):
+Install JWT Decoder : We need to read the role from the token.
 ====================================
 src
  ├── api

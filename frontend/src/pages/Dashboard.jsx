@@ -1,6 +1,9 @@
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+import CreateTicket from "./CreateTicket";
+import MyTickets from "./MyTickets";
+
 function Dashboard(){
 
   const { logout } = useAuth();
@@ -10,7 +13,10 @@ function Dashboard(){
     logout();
     navigate("/login");
   };
-
+const handleCreate = () => {
+//     `logout`();
+    navigate("/tickets");
+  };
   return (
     <div className="p-10">
 
@@ -23,6 +29,19 @@ function Dashboard(){
         className="bg-red-500 text-white p-2">
         Logout
       </button>
+
+    <div>
+
+      <CreateTicket />
+
+      <MyTickets />
+
+    </div>
+{/* <button */}
+{/*         onClick={handleCreate} */}
+{/*         className="bg-red-500 text-white p-2"> */}
+{/*         Create */}
+{/*       </button> */}
 
     </div>
   );
