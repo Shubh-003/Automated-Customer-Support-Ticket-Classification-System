@@ -1,49 +1,56 @@
+/*
+File: Dashboard.jsx
+
+Purpose:
+Main application dashboard.
+
+Renders different UI depending on the user role.
+*/
+
 import { useAuth } from "../auth/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 import CreateTicket from "./CreateTicket";
 import MyTickets from "./MyTickets";
+import AdminTickets from "./AdminTickets";
 
 function Dashboard(){
 
-  const { logout } = useAuth();
-  const navigate = useNavigate();
+  const { role } = useAuth();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
-const handleCreate = () => {
-//     `logout`();
-    navigate("/tickets");
-  };
   return (
-    <div className="p-10">
 
-      <h1 className="text-2xl mb-4">
-        Dashboard - Welcome You are logged in..!
+    <div className="p-6">
+
+      <h1 className="text-2xl mb-6">
+        Dashboard
       </h1>
 
-      <button
-        onClick={handleLogout}
-        className="bg-red-500 text-white p-2">
-        Logout
-      </button>
+      {/* USER interface */}
+      {role === "USER" && (
+        <>
+        <h1>Welcome USER</h1>
+          <CreateTicket />
+          <MyTickets />
+        </>
+      )}
 
-    <div>
+      {/* AGENT interface */}
+      {role === "AGENT" && (
+          <>
+        <AdminTickets />
+        </>
+      )}
 
-      <CreateTicket />
-
-      <MyTickets />
+      {/* ADMIN interface */}
+      {role === "ADMIN" && (
+          <>
+          <h1>Welcome ADMIN</h1>
+        <AdminTickets />
+        </>
+      )}
 
     </div>
-{/* <button */}
-{/*         onClick={handleCreate} */}
-{/*         className="bg-red-500 text-white p-2"> */}
-{/*         Create */}
-{/*       </button> */}
 
-    </div>
   );
 }
 

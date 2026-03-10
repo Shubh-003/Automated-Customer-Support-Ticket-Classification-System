@@ -6,7 +6,10 @@ GEMINI_API_KEY = Your_ApiKey
 JWT_SECRET = Your_Secret
 JWT_EXPIRATION: e.g.86400000
 
-
+{
+  "username": "admin",
+  "password": "admin123"
+}
 ==== HOW TO RUN =====
 cd D:\smart-support-desk\frontend
 npm run dev

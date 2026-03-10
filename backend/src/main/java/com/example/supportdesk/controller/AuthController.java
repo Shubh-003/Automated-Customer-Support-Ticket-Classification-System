@@ -84,7 +84,8 @@ public class AuthController {
 //        String token = jwtService.generateToken(userDetails);
 
         // ✅ Return JSON
-        String accessToken = jwtService.generateAccessToken(userDetails);
+//        String accessToken = jwtService.generateAccessToken(userDetails);
+        String accessToken = jwtService.generateAccessToken(user);
 
         RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getUsername());
 
@@ -116,8 +117,8 @@ public Map<String, String> refreshToken(
                     )
             );
 
-    String newAccessToken =
-            jwtService.generateAccessToken(userDetails);
+//    String newAccessToken = jwtService.generateAccessToken(userDetails);
+    String newAccessToken = jwtService.generateAccessToken(user);
 
 //  Token Rotation (Advanced Security)
     refreshTokenService.revokeToken(requestToken);

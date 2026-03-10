@@ -46,14 +46,21 @@ function AdminTickets(){
         >
 
           <h3 className="font-bold">
-            {t.subject}
+              User: {t.createdBy}
           </h3>
+
+          <p> {t.subject}</p>
 
           <p>{t.description}</p>
 
+          <p>Category: {t.category}</p>
+
+          <p> confidence: {t.confidence} </p>
+
           <p>Status: {t.status}</p>
 
-          <p>User: {t.createdBy}</p>
+          <p> Created At: {t.createdAt} </p>
+
 
         </div>
       ))}

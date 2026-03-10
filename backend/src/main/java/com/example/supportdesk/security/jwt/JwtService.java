@@ -1,7 +1,9 @@
 package com.example.supportdesk.security.jwt;
 
+import com.example.supportdesk.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
@@ -21,25 +23,29 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long expiration;
 
-//    public String generateToken(UserDetails user) {
-//
+//    Access token  ,  Refresh token
+//    public String generateAccessToken(UserDetails user) {
 //        return Jwts.builder()
 //                .subject(user.getUsername())
 //                .issuedAt(new Date())
-//                .expiration(new Date(System.currentTimeMillis() + expiration))
+//                .expiration(new Date(System.currentTimeMillis() + 900000)) // 15 min= 900000
 //                .signWith(getKey())
 //                .compact();
 //    }
-//    Access token  ,  Refresh token
-    public String generateAccessToken(UserDetails user) {
+
+    public String generateAccessToken(User user) {
+
         return Jwts.builder()
+//                .setSubject(user.getUsername())
                 .subject(user.getUsername())
+                .claim("role", user.getRole().name()) // add role claim for frontend
+//                .setIssuedAt(new Date())
                 .issuedAt(new Date())
+//                .setExpiration(new Date(System.currentTimeMillis() + 900000))
                 .expiration(new Date(System.currentTimeMillis() + 900000)) // 15 min= 900000
                 .signWith(getKey())
                 .compact();
     }
-
     public String extractUsername(String token) {
         return extractAllClaims(token).getSubject();
     }
