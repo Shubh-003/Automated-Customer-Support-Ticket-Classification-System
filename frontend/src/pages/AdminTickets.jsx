@@ -1,37 +1,43 @@
 /*
 
-Admin/Agent can view all support tickets.
+Admin/Agent ticket management panel.
 
-API: GET /api/tickets/all
+Features:
+- View all tickets
+- Change ticket status
 */
 
 import { useEffect, useState } from "react";
-import axios from "../api/axiosClient";
+import { getAllTickets, updateTicketStatus } from "../api/ticketApi";
 
 function AdminTickets(){
 
   const [tickets,setTickets] = useState([]);
 
   const loadTickets = async () => {
-
-    try {
-
-      const res = await axios.get("/tickets/all");
-
-      setTickets(res.data);
-
-    } catch(err){
-
-      console.error("Failed to load tickets");
-
-    }
+    const data = await getAllTickets();
+    setTickets(data);
   };
 
   useEffect(()=>{
     loadTickets();
   },[]);
 
-  return (
+  const handleStatusChange = async (id,newStatus) => {
+
+    try{
+
+      await updateTicketStatus(id,newStatus);
+
+      // refresh list after update
+      loadTickets();
+
+    }catch(err){
+      console.error("Failed to update status");
+    }
+  };
+
+  return(
 
     <div className="p-6">
 
@@ -39,31 +45,75 @@ function AdminTickets(){
         All Tickets
       </h2>
 
-      {tickets.map((t)=>(
-        <div
-          key={t.id}
-          className="border p-3 mb-3"
-        >
+      {tickets.map((t)=>{
 
-          <h3 className="font-bold">
-              User: {t.createdBy}
-          </h3>
+        // auto-close logic (frontend only)
+        let displayStatus = t.status;
 
-          <p> {t.subject}</p>
+        if(t.status === "RESOLVED"){
 
-          <p>{t.description}</p>
+          const resolvedTime = new Date(t.updatedAt || t.createdAt);
+          const now = new Date();
 
-          <p>Category: {t.category}</p>
+          const hoursPassed =
+            (now - resolvedTime) / (1000 * 60 * 60);
 
-          <p> confidence: {t.confidence} </p>
+          if(hoursPassed >= 48){
+            displayStatus = "CLOSED";
+          }
+        }
 
-          <p>Status: {t.status}</p>
+        return(
 
-          <p> Created At: {t.createdAt} </p>
+          <div
+            key={t.id}
+            className="border p-3 mb-3"
+          >
 
+            <h3 className="font-bold">
+              {t.subject}
+            </h3>
 
-        </div>
-      ))}
+            <p>{t.description}</p>
+
+            <p>User: {t.createdBy}</p>
+
+            <p>
+              Status: {displayStatus}
+            </p>
+
+            <select
+              value={t.status}
+              onChange={(e)=>
+                handleStatusChange(
+                  t.id,
+                  e.target.value
+                )
+              }
+              className="border p-1 mt-2"
+            >
+
+              <option value="OPEN">OPEN</option>
+
+              <option value="IN_PROGRESS">
+                IN_PROGRESS
+              </option>
+
+              <option value="RESOLVED">
+                RESOLVED
+              </option>
+
+              <option value="CLOSED">
+                CLOSED
+              </option>
+
+            </select>
+
+          </div>
+
+        )
+
+      })}
 
     </div>
 

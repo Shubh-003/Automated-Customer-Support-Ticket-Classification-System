@@ -65,6 +65,15 @@ Example: config.setAllowedOrigins(List.of("https://supportdesk.com"));
 
 Phase 5 — Role-Based Dashboard (User / Agent / Admin):
 Install JWT Decoder : We need to read the role from the token.
+
+Phase 6: status update:
+PUT /api/tickets/{id}/status
+{
+  "status": "IN_PROGRESS"
+}
+
+phase 7: WebSockets for real-time ticket updates
+Backend publishes WebSocket event -> All connected clients receive event-> React updates UI instantly
 ====================================
 src
  ├── api

@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @SecurityRequirement(name = "bearerAuth")
 @RestController
@@ -62,5 +63,10 @@ public class TicketController {
 
         ticketService.deleteTicket(id);
         return "Ticket deleted";
+    }
+
+    @PutMapping("/{id}/status")
+    public Ticket updateStatus(@PathVariable Long id,@RequestBody Map<String,String> body){
+        return ticketService.updateStatus(id, body.get("status"));
     }
 }
