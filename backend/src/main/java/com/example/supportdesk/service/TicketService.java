@@ -4,6 +4,7 @@ import com.example.supportdesk.dto.*;
 import com.example.supportdesk.model.Ticket;
 import com.example.supportdesk.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final GeminiClient geminiClient;
     private final AiResultValidator validator;
+    private final SimpMessagingTemplate messagingTemplate; // for auto refresh
 
     public Ticket createTicket(TicketRequest request, String user) {
 
@@ -34,6 +36,12 @@ public class TicketService {
         ticket = ticketRepository.save(ticket);
 
         classifyAsync(ticket.getId(), request.getDescription());
+
+        // broadcast new ticket event
+        messagingTemplate.convertAndSend(
+                "/topic/tickets",
+                ticket
+        );
 
         return ticket;
     }

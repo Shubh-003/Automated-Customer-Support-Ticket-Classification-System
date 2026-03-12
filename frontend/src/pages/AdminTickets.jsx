@@ -9,6 +9,7 @@ Features:
 
 import { useEffect, useState } from "react";
 import { getAllTickets, updateTicketStatus } from "../api/ticketApi";
+import { connectWebSocket } from "../websocket/socket";
 
 function AdminTickets(){
 
@@ -21,6 +22,14 @@ function AdminTickets(){
 
   useEffect(()=>{
     loadTickets();
+
+    // connect websocket
+        connectWebSocket((newTicket)=>{
+
+          setTickets((prev)=>[newTicket,...prev]);
+
+        });
+
   },[]);
 
   const handleStatusChange = async (id,newStatus) => {

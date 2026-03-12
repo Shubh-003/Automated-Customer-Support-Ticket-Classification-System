@@ -7,6 +7,7 @@ API: GET /api/tickets/my
 
 import { useEffect, useState } from "react";
 import axios from "../api/axiosClient";
+import { connectWebSocket } from "../websocket/socket";
 
 function MyTickets() {
 
@@ -32,6 +33,14 @@ function MyTickets() {
   // load tickets when page opens
   useEffect(() => {
     loadTickets();
+
+    // connect websocket
+        connectWebSocket((newTicket)=>{
+
+          setTickets((prev)=>[newTicket,...prev]);
+
+        });
+
   }, []);
 
   return (

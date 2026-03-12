@@ -99,3 +99,15 @@ src
  │
  ├── App.jsx
  └── main.jsx
+
+ Spring Boot REST API
+ JWT authentication
+ RBAC security
+ AI ticket classification
+ PostgreSQL database
+ React frontend
+ Protected routes
+ Role-based UI
+ Ticket workflow
+ Auto-close scheduler
+ WebSocket real-time updates

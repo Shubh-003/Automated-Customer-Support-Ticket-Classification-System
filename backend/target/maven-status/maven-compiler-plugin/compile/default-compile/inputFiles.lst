@@ -1,6 +1,7 @@
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\Ticket.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\repository\UserRepository.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\audit\AuditAspect.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\config\WebSocketConfig.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\LoginRequest.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\jwt\JwtAuthFilter.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\service\CustomUserDetailsService.java

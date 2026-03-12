@@ -11,6 +11,7 @@ com\example\supportdesk\model\Role.class
 com\example\supportdesk\security\jwt\JwtService.class
 com\example\supportdesk\service\AiResultValidator$ValidatedResult.class
 com\example\supportdesk\repository\RefreshTokenRepository.class
+com\example\supportdesk\config\WebSocketConfig.class
 com\example\supportdesk\model\Ticket$TicketBuilder.class
 com\example\supportdesk\model\TicketPriority.class
 com\example\supportdesk\controller\AuthController.class
