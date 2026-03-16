@@ -33,4 +33,11 @@ export const connectWebSocket = (onTicketReceived) => {
   };
 
   stompClient.activate();
+
+  // return disconnect function
+    return () => {
+      if (stompClient) {
+        stompClient.deactivate();
+      }
+    };
 };

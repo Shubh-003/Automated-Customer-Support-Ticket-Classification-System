@@ -74,31 +74,47 @@ PUT /api/tickets/{id}/status
 
 phase 7: WebSockets for real-time ticket updates
 Backend publishes WebSocket event -> All connected clients receive event-> React updates UI instantly
+
+Total Tickets
+Open Tickets
+Resolved Tickets
+Active Agents
+Recent Tickets
 ====================================
+// First add path here for new functionality then add route in app.jsx
+// then add lable in AdminLayout
+
+
+@Query("""
+SELECT t FROM Ticket t
+WHERE LOWER(t.subject) LIKE LOWER(CONCAT('%', :query, '%'))
+   OR LOWER(t.description) LIKE LOWER(CONCAT('%', :query, '%'))
+""")
+List<Ticket> searchTickets(@Param("query") String query); ** add id sesrch slso
+
+
 src
- ├── api
- │    └── axiosClient.js
+ ├─ layouts
+ │   ├─ UserLayout.jsx
+ │   └─ AdminLayout.jsx
  │
- ├── auth
- │    └── AuthContext.jsx
+ ├─ pages
+ │   ├─ user
+ │   │   ├─ UserDashboard.jsx
+ │   │   ├─ CreateTicket.jsx
+ │   │   └─ MyTickets.jsx
+ │   │
+ │   └─ admin
+ │       ├─ AdminDashboard.jsx
+ │       ├─ AdminTickets.jsx
+ │       ├─ Users.jsx
+ │       └─ Categories.jsx
  │
- ├── pages
- │    ├── LoginPage.jsx
- │    ├── RegisterPage.jsx
- │    ├── Dashboard.jsx
- │    ├── CreateTicket.jsx
- │    ├── MyTickets.jsx
- │    └── AdminTickets.jsx
- │
- ├── components
- │    ├── Navbar.jsx
- │    └── ProtectedRoute.jsx
- │
- ├── hooks
- │    └── useAuth.js
- │
- ├── App.jsx
- └── main.jsx
+ ├─ components
+ │   └─ Sidebar.jsx
+
+** Reusable layout for admin and user
+1.Sidebar Component(UI) -> Admin/User Layout(Dash links) -> Pages Actual logics -> App.jsx imports and routes.
 
  Spring Boot REST API
  JWT authentication
@@ -111,3 +127,6 @@ src
  Ticket workflow
  Auto-close scheduler
  WebSocket real-time updates
+ Notification bell counter
+ Username in navbar
+ Sidebar dashboard layout

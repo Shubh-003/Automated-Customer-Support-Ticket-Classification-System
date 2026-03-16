@@ -69,4 +69,11 @@ public class TicketController {
     public Ticket updateStatus(@PathVariable Long id,@RequestBody Map<String,String> body){
         return ticketService.updateStatus(id, body.get("status"));
     }
+
+    @GetMapping("/search")
+    public List<Ticket> searchTickets(@RequestParam String query) {
+
+        return ticketService.searchTickets(query);
+
+    }
 }

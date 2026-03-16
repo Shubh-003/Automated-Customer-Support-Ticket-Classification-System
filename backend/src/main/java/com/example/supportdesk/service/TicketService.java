@@ -94,4 +94,10 @@ public class TicketService {
     public List<Ticket> getTicketsByStatus(String status){
         return ticketRepository.findByStatus(status);
     }
+
+    public List<Ticket> searchTickets(String query) {
+
+        return ticketRepository.searchTickets(query);
+
+    }
 }

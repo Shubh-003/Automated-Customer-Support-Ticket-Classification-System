@@ -22,3 +22,9 @@ export const updateTicketStatus = async (id, status) => {
 
   return res.data;
 };
+
+export const searchTickets = async (query) => {
+
+  const res = await axios.get(`/tickets/search?query=${query}`);
+  return res.data;
+};

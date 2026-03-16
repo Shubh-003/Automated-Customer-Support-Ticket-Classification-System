@@ -22,14 +22,22 @@ function LoginPage(){
         password
       });
 
-      login(res.data.accessToken);
+      const token = res.data.accessToken;
+
+       login(token);
 
       localStorage.setItem(
         "refreshToken",
         res.data.refreshToken
       );
 
-      navigate("/dashboard");
+    const payload = JSON.parse(atob(token.split(".")[1]));
+
+      if (payload.role === "ADMIN") {
+        navigate("/admin");
+      } else {
+        navigate("/user");
+      }
 
     }catch(err){
       alert("Invalid credentials");

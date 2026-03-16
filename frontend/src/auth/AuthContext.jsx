@@ -1,8 +1,5 @@
 /*
-File: AuthContext.jsx
-
-Purpose:
-Global authentication state for the entire frontend.
+Purpose: Global authentication state for the entire frontend.
 
 Responsibilities:
 - Store JWT token
@@ -28,6 +25,10 @@ export const AuthProvider = ({ children }) => {
     token ? jwtDecode(token).role : null
   );
 
+const [username, setUsername] = useState(() => {
+    return token ? jwtDecode(token).sub : null;
+  });
+
   const login = (accessToken) => {
 
     // save token
@@ -49,11 +50,12 @@ export const AuthProvider = ({ children }) => {
 
     setToken(null);
     setRole(null);
+    setUsername(null);
   };
 
   return (
     <AuthContext.Provider
-      value={{ token, role, login, logout }}
+      value={{ token, role,username, login, logout }}
     >
       {children}
     </AuthContext.Provider>

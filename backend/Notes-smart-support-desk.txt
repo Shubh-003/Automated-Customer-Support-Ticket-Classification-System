@@ -30,7 +30,7 @@ DB(root)
 docker exec -it smart-support-desk-db-1 psql -U postgres
 postgres=# \l
 postgres=# \c supportdesk
-
+supportdesk=# \dt  //to list tables
 
 
 
