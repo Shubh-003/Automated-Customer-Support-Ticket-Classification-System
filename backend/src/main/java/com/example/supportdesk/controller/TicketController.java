@@ -65,11 +65,13 @@ public class TicketController {
         return "Ticket deleted";
     }
 
+//    ------ Update status --------
     @PutMapping("/{id}/status")
     public Ticket updateStatus(@PathVariable Long id,@RequestBody Map<String,String> body){
         return ticketService.updateStatus(id, body.get("status"));
     }
 
+//    -------- Search ticket ------
     @GetMapping("/search")
     public List<Ticket> searchTickets(@RequestParam String query) {
 

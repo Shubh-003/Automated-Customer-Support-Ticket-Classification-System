@@ -13,7 +13,7 @@ function AdminLayout() {
     { label: "Dashboard", path: "/admin" },
     { label: "Tickets", path: "/admin/tickets" },
     { label: "Users", path: "/admin/users" },
-    { label: "Categories", path: "/admin/categories" },
+//     { label: "Categories", path: "/admin/categories" },
   ];
 
   return (
@@ -25,11 +25,12 @@ function AdminLayout() {
 
       <div className="flex-1">
         <Navbar />
+        <div className="flex-1 p-6">
+                <Outlet />
+              </div>
       </div>
 
-      <div className="flex-1 p-6">
-        <Outlet />
-      </div>
+
 
     </div>
   );

@@ -23,10 +23,12 @@ function UserLayout() {
 
       <div className="flex-1">
         <Navbar />
+
+        <div className="flex-1 p-6">
+                <Outlet />
+              </div>
        </div>
-      <div className="flex-1 p-6">
-        <Outlet />
-      </div>
+
 
     </div>
   );

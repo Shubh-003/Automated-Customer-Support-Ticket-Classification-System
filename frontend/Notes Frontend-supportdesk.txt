@@ -84,6 +84,13 @@ Recent Tickets
 // First add path here for new functionality then add route in app.jsx
 // then add lable in AdminLayout
 
+phase 6: Admin dashboard with: Done aggrigation in backend, not only on frontend
+✔ Total tickets
+✔ Total users
+✔ Tickets per category (Bar)
+✔ Tickets by status (Pie)
+✔ Daily ticket trends (Line)
+FLOW->
 
 @Query("""
 SELECT t FROM Ticket t
