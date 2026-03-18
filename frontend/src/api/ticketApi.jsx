@@ -23,6 +23,13 @@ export const updateTicketStatus = async (id, status) => {
   return res.data;
 };
 
+/* Delete ticket Only ADMIN should use this */
+export const deleteTicket = async (id) => {
+
+  await axios.delete(`/tickets/${id}`);
+
+};
+
 export const searchTickets = async (query) => {
 
   const res = await axios.get(`/tickets/search?query=${query}`);

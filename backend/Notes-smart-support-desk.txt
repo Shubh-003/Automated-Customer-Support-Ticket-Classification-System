@@ -39,10 +39,6 @@ Description:
 “Built an AI-powered support system using Spring Boot, Docker, PostgreSQL, and Google Gemini API with real-time classification and containerized deployment.”
 “I designed custom prompts and response sanitization to improve AI accuracy.”
 
-ab tu bolega:
-“Wahi AI ticket project…”
-Main samajh jaunga.
-Tu zero se explain nahi karega.
 ---------------------------------------
 JWT Advance:
 Login →
@@ -182,15 +178,19 @@ insert into users (username, password, role, enabled) values ('agent', '$2a$10$f
 
 
 ==================================================
-DB_USER = Your_Db_Name
-DB_PASSWORD = Your_DB_Password
+DB_USER=postgres
+DB_PASSWORD=postgres
 
-GEMINI_API_KEY = Your_ApiKey
+GEMINI_API_KEY=AIzaSyDeh0ajIdD2v5QSCpdDI8CfQu94YQIbdYE
 
-JWT_SECRET = Your_Secret
-JWT_EXPIRATION: e.g.86400000
+JWT_SECRET=a9f3e72d8c1b45f6e9a21d7c0b4f89e2a5c7d1f8e6b9a0d4c3f2e7b5a1c9
+JWT_EXPIRATION: 86400000
 
 =================================================================================
 =========================================================================
 
+ab tu bolega:
+“Wahi AI ticket project…”
+Main samajh jaunga.
+Tu zero se explain nahi karega.
 ============Frontend=================================
