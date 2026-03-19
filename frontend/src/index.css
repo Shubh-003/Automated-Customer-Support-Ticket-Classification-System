@@ -1,3 +1,210 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* Mobile Hamburger Button */
+  .mobile-menu-btn {
+    @apply md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500;
+  }
+
+  /* Dark overlay for mobile when sidebar is open */
+  .sidebar-overlay {
+    @apply fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 md:hidden transition-opacity;
+  }
+
+  /* Main Sidebar Layout: Fixed to the left, full height, independent scroll */
+  .sidebar-container {
+    @apply fixed top-0 left-0 z-50 h-screen w-64 flex flex-col bg-slate-900 text-slate-300 transition-transform duration-300 ease-in-out border-r border-slate-700/50 shadow-2xl;
+  }
+
+  /* Structural elements inside the sidebar */
+  .sidebar-header {
+    @apply flex items-center justify-between p-6 border-b border-slate-700/50;
+  }
+
+  .sidebar-nav {
+    @apply flex-1 px-4 py-6 space-y-2 overflow-y-auto;
+  }
+
+  /* Base Navigation Link */
+  .nav-item {
+    @apply flex items-center px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ease-in-out hover:bg-slate-800 hover:text-white hover:translate-x-1;
+  }
+
+  /* Glassmorphism Active State */
+  .nav-item-active {
+    @apply bg-white/10 text-white backdrop-blur-md border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] hover:bg-white/15 translate-x-1;
+  }
+}
+
+  /* ============================================ */
+
+  /* Navbar Layout */
+  .topbar-container {
+    @apply sticky top-0 z-40 flex flex-col-reverse md:flex-row justify-between items-center w-full bg-white/95 backdrop-blur-sm border-b border-slate-200 px-4 py-3 md:px-6 gap-4 md:gap-0 shadow-sm transition-all;
+  }
+
+  /* Search Input Styles */
+ .search-wrapper {
+   @apply relative w-full md:w-80 lg:w-[28rem];
+ }
+
+  .search-input {
+    @apply w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 placeholder-slate-400 shadow-sm;
+  }
+
+  .search-icon {
+    @apply absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-indigo-500 transition-colors;
+  }
+
+  /* Actions & User Profile */
+  .topbar-actions {
+    @apply flex items-center justify-end w-full md:w-auto gap-4 md:gap-6;
+  }
+
+  .notification-btn {
+    @apply relative p-2 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500;
+  }
+
+  .notification-badge {
+    @apply absolute top-0 right-0 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full;
+  }
+
+  .user-avatar {
+    @apply flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-semibold shadow-inner;
+  }
+
+  /* Secondary/Danger Button */
+  .btn-danger-soft {
+    @apply flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors border border-transparent hover:border-red-200 focus:outline-none focus:ring-2 focus:ring-red-500;
+  }
+
+ /* ==============Amin dash============================== */
+
+
+  /* Dashboard specific layouts */
+  .dashboard-grid {
+    @apply grid gap-6;
+  }
+
+  /* Metric Cards */
+  .stat-card {
+    @apply flex flex-col p-6 bg-white rounded-xl shadow-sm border border-slate-200 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 relative overflow-hidden;
+  }
+
+  .stat-card-title {
+    @apply text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 z-10;
+  }
+
+  .stat-card-value {
+    @apply text-3xl font-extrabold text-slate-800 z-10;
+  }
+
+  /* Decorative accent line for stat cards */
+  .stat-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-indigo-500 transition-all duration-300;
+  }
+  .stat-card:hover::before {
+    @apply h-2;
+  }
+
+  /* Chart Containers */
+  .chart-card {
+    @apply p-6 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col w-full;
+  }
+
+  .chart-title {
+    @apply text-lg font-bold text-slate-800 mb-6;
+  }
+
+  /* Polished Loading State */
+  .loading-pulse {
+    @apply animate-pulse bg-slate-200 rounded-xl w-full h-full min-h-[300px];
+  }
+
+
+/*    =====================================   */
+  /* Ticket Card Layout */
+  .ticket-card {
+    @apply bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 p-4 md:p-5 flex flex-col md:flex-row gap-4 md:gap-6 md:items-center relative overflow-hidden w-full;
+  }
+
+  /* Side accent line based on status (optional but very enterprise) */
+  .ticket-card-accent {
+    @apply absolute left-0 top-0 bottom-0 w-1;
+  }
+
+  /* Typography */
+  .ticket-subject {
+    @apply text-lg font-bold text-slate-900 leading-tight mb-1 group-hover:text-indigo-600 transition-colors;
+  }
+
+  .ticket-desc {
+    @apply text-sm text-slate-500 line-clamp-2 mb-3 md:mb-0;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide whitespace-nowrap;
+  }
+
+  .badge-category {
+    @apply bg-indigo-50 text-indigo-700 border border-indigo-100;
+  }
+
+  /* Status Colors */
+  .status-open { @apply bg-amber-100 text-amber-800 border border-amber-200; }
+  .status-in_progress { @apply bg-blue-100 text-blue-800 border border-blue-200; }
+  .status-resolved { @apply bg-emerald-100 text-emerald-800 border border-emerald-200; }
+  .status-closed { @apply bg-slate-100 text-slate-500 border border-slate-200; }
+
+  /* Form Select for inline status updates */
+  .select-sm {
+    @apply block w-full md:w-auto pl-3 pr-8 py-1.5 text-sm font-medium border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md shadow-sm bg-white text-slate-700 transition-colors cursor-pointer;
+  }
+
+
+/* ======================================  */
+
+  /* Table Container & Base */
+  .table-wrapper {
+    @apply w-full bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden;
+  }
+
+  .admin-table {
+    @apply w-full text-sm text-left text-slate-600 hidden md:table;
+  }
+
+  /* Table Headers & Rows */
+  .admin-th {
+    @apply px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider bg-slate-50 border-b border-slate-200;
+  }
+
+  .admin-tr {
+    @apply bg-white transition-colors hover:bg-slate-50/80 border-b border-slate-100 last:border-0;
+  }
+
+  .admin-td {
+    @apply px-6 py-4 whitespace-nowrap;
+  }
+
+  /* Mobile User Card */
+  .user-mobile-card {
+    @apply md:hidden flex flex-col p-5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-4;
+  }
+
+  /* Small Primary Button for table actions */
+  .btn-primary-sm {
+    @apply inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1;
+  }
+
+  /* Stat Badges */
+  .stat-badge {
+    @apply inline-flex items-center justify-center min-w-[2rem] px-2 py-0.5 rounded-full text-xs font-bold;
+  }
+
+  .stat-neutral { @apply bg-slate-100 text-slate-700; }
+  .stat-success { @apply bg-emerald-100 text-emerald-700; }
+  .stat-danger { @apply bg-red-100 text-red-700; }

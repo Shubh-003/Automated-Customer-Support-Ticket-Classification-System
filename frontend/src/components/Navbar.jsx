@@ -1,141 +1,105 @@
-/*
-Reusable top navigation bar for User/Admin dashboards.
-
-Features:
-1. Search tickets
-2. Real-time notification bell (WebSocket updates)
-3. Display logged-in username
-4. Logout functionality
-*/
-
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { connectWebSocket } from "../websocket/socket";
 
 function Navbar() {
-
   const { username, logout } = useAuth();
   const navigate = useNavigate();
 
-  // Search input state
   const [search, setSearch] = useState("");
-
-  // Notification counter for new tickets
   const [notifications, setNotifications] = useState(0);
 
-  /*
-  Establish WebSocket connection once when navbar loads.
-  Whenever a new ticket event is received,
-  increase notification counter.
-  */
   useEffect(() => {
-
     const disconnect = connectWebSocket((ticket) => {
-
       setNotifications((prev) => prev + 1);
-
     });
 
-    // cleanup when component unmounts
     return () => {
       if (disconnect) disconnect();
     };
-
   }, []);
 
-  /*
-  Handle search when user presses Enter.
-  Redirects to search results page.
-  */
   const handleSearch = (e) => {
-
     if (e.key === "Enter" && search.trim() !== "") {
-
       navigate(`/search?query=${encodeURIComponent(search)}`);
-
       setSearch("");
-
     }
-
   };
 
-  /*
-  Logout user and redirect to login page
-  */
   const handleLogout = () => {
-
     logout();
     navigate("/login");
-
   };
 
   return (
-
-    <div className="flex justify-between items-center bg-white shadow px-6 py-3">
+    <header className="topbar-container">
 
       {/* SEARCH BAR */}
-      <input
-        type="text"
-        placeholder="Search tickets..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        onKeyDown={handleSearch}
-        className="border rounded-md p-2 w-96 focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
+      <div className="search-wrapper group">
+        <svg
+          className="search-icon"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input
+          type="text"
+          placeholder="Search tickets by ID, subject, or customer..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleSearch}
+          className="search-input"
+        />
+      </div>
 
-      <div className="flex items-center gap-6">
+      {/* ACTIONS CONTAINER */}
+      <div className="topbar-actions">
 
         {/* NOTIFICATION BELL */}
-        <div
-          className="relative cursor-pointer text-xl"
+        <button
+          className="notification-btn"
           title="New ticket notifications"
+          aria-label="Notifications"
         >
-          🔔
-
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
           {notifications > 0 && (
-            <span
-              className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full"
-            >
-              {notifications}
+            <span className="notification-badge">
+              {notifications > 99 ? '99+' : notifications}
             </span>
           )}
-
-        </div>
+        </button>
 
         {/* USER INFO */}
-        <div className="flex items-center gap-2">
-
-          {/* Avatar (first letter of username) */}
-          <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center text-white font-semibold">
-
+        <div className="flex items-center gap-3 border-l border-slate-200 pl-4 md:pl-6">
+          <div className="user-avatar">
             {username ? username.charAt(0).toUpperCase() : "U"}
-
           </div>
-
-          {/* Username */}
-          <span className="font-medium">
-
-            {username}
-
+          {/* Hide username on very small mobile screens to save space */}
+          <span className="text-sm font-medium text-slate-700 hidden sm:block">
+            {username || "User"}
           </span>
-
         </div>
 
         {/* LOGOUT BUTTON */}
         <button
           onClick={handleLogout}
-          className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md"
+          className="btn-danger-soft"
+          title="Logout"
         >
-          Logout
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span className="hidden sm:block">Logout</span>
         </button>
 
       </div>
-
-    </div>
-
+    </header>
   );
-
 }
 
 export default Navbar;
