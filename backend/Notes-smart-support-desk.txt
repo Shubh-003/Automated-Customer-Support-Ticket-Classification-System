@@ -11,7 +11,7 @@ Notes-smart-support-desk
 open project in inteligia
 open docker desktop - running
 
-To check postre: docker ps   at root
+To check postre: docker ps   //at root
 docker exec -it smart-support-desk-db-1 psql -U postgres    // to check tbl
 
 cd D:\smart-support-desk\backend
@@ -153,9 +153,6 @@ Where categoris are mentiones in code
 Login = Show ID → Get Pass
 API = Show Pass → Enter
 
-DB tables :
-tickets
-users
 
 Authorization and permission:
 | Action           | USER | AGENT | ADMIN |
@@ -165,6 +162,12 @@ Authorization and permission:
 | View All Tickets | ❌    | ✅     | ✅     |
 | Update Status    | ❌    | ✅     | ✅     |
 | Delete Ticket    | ❌    | ❌     | ✅     |
+
+DB tables :
+tickets
+users
+audit_logs
+refresh_tokens
 
 PS D:\smart-support-desk> docker exec -it smart-support-desk-db-1 psql -U postgres
 postgres=# \c supportdesk
@@ -178,19 +181,5 @@ insert into users (username, password, role, enabled) values ('agent', '$2a$10$f
 
 
 ==================================================
-DB_USER=postgres
-DB_PASSWORD=postgres
-
-GEMINI_API_KEY=AIzaSyDeh0ajIdD2v5QSCpdDI8CfQu94YQIbdYE
-
-JWT_SECRET=a9f3e72d8c1b45f6e9a21d7c0b4f89e2a5c7d1f8e6b9a0d4c3f2e7b5a1c9
-JWT_EXPIRATION: 86400000
-
 =================================================================================
 =========================================================================
-
-ab tu bolega:
-“Wahi AI ticket project…”
-Main samajh jaunga.
-Tu zero se explain nahi karega.
-============Frontend=================================

@@ -81,8 +81,6 @@
   }
 
  /* ==============Amin dash============================== */
-
-
   /* Dashboard specific layouts */
   .dashboard-grid {
     @apply grid gap-6;
@@ -125,7 +123,7 @@
   }
 
 
-/*    =====================================   */
+/*    ============== All tickets =======================   */
   /* Ticket Card Layout */
   .ticket-card {
     @apply bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 p-4 md:p-5 flex flex-col md:flex-row gap-4 md:gap-6 md:items-center relative overflow-hidden w-full;
@@ -166,7 +164,7 @@
   }
 
 
-/* ======================================  */
+/* ============== List of Users in Admin ========================  */
 
   /* Table Container & Base */
   .table-wrapper {
@@ -208,3 +206,40 @@
   .stat-neutral { @apply bg-slate-100 text-slate-700; }
   .stat-success { @apply bg-emerald-100 text-emerald-700; }
   .stat-danger { @apply bg-red-100 text-red-700; }
+
+
+  /* ========== USER ===================  */
+  /* ========== Create ticket ===================  */
+  /* Form Container */
+  .form-card {
+    @apply bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200;
+  }
+
+  /* Labels and Inputs */
+  .form-label {
+    @apply block text-sm font-semibold text-slate-700 mb-1.5;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 transition-all duration-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-slate-400;
+  }
+
+  .textarea-field {
+    @apply input-field min-h-[140px] resize-y;
+  }
+
+  /* Primary Action Button */
+  .btn-primary {
+    @apply flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed;
+  }
+
+  /* Alert Banners */
+  .alert-error {
+    @apply p-4 mb-6 text-sm text-red-700 bg-red-50 rounded-lg border border-red-200 flex items-start gap-3;
+  }
+
+  .alert-success {
+    @apply p-4 mb-6 text-sm text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200 flex items-start gap-3;
+  }
+
+
