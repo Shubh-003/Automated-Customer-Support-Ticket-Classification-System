@@ -242,4 +242,20 @@
     @apply p-4 mb-6 text-sm text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200 flex items-start gap-3;
   }
 
+  /* Audit specific mobile card */
+  .log-mobile-card {
+    @apply md:hidden flex flex-col p-4 bg-white border border-slate-200 rounded-xl shadow-sm space-y-3 relative overflow-hidden;
+  }
+
+  /* Action Badges for instant visual recognition */
+  .badge-action {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border;
+  }
+
+  .action-create { @apply bg-emerald-50 text-emerald-700 border-emerald-200; }
+  .action-update { @apply bg-blue-50 text-blue-700 border-blue-200; }
+  .action-delete { @apply bg-red-50 text-red-700 border-red-200; }
+  .action-login { @apply bg-indigo-50 text-indigo-700 border-indigo-200; }
+  .action-default { @apply bg-slate-50 text-slate-700 border-slate-200; }
+
 

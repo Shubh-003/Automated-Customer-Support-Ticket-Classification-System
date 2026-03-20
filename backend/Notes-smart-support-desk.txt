@@ -181,5 +181,8 @@ insert into users (username, password, role, enabled) values ('agent', '$2a$10$f
 
 
 ==================================================
-=================================================================================
+======================= deployment ==========================================================
+
+COREs base URL :security >SecurityConfig - config.setAllowedOrigins(List.of("https://your-frontend.vercel.app"));
+
 =========================================================================

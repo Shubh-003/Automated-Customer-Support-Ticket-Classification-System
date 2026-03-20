@@ -83,6 +83,7 @@ public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration config = new CorsConfiguration();
 
     config.setAllowedOrigins(List.of("http://localhost:5173"));
+//    config.setAllowedOrigins(List.of("https://your-frontend.vercel.app"));
     config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
     config.setAllowedHeaders(List.of("*")); // Later in production we usually allow: https://yourdomain.com  not *.
     config.setAllowCredentials(true);

@@ -14,6 +14,7 @@ import MyTickets from "./pages/user/MyTickets";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminTickets from "./pages/admin/AdminTickets";
 import Users from "./pages/admin/Users";
+import Audit from "./pages/admin/Audit";
 // import Categories from "./pages/admin/Categories";
 
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -56,6 +57,7 @@ function App() {
               <Route index element={<AdminDashboard />} />
               <Route path="tickets" element={<AdminTickets />} />
               <Route path="users" element={<Users />} />
+              <Route path="audit" element={<Audit />} />
 {/*               <Route path="Categories" element={<Categories />} /> */}
             </Route>
 

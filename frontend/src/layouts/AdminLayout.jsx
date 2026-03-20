@@ -8,7 +8,7 @@ function AdminLayout() {
     { label: "Dashboard", path: "/admin" },
     { label: "Tickets", path: "/admin/tickets" },
     { label: "Users", path: "/admin/users" },
-    // { label: "Categories", path: "/admin/categories" },
+//     { label: "Audit-logs", path: "/admin/Audit" },
   ];
 
   return (

@@ -13,3 +13,6 @@ spring:
   ai:
     gemini:
       api-key: ${GEMINI_API_KEY}
+
+server:
+  port:8080
