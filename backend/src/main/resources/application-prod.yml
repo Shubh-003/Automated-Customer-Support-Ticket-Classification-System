@@ -2,7 +2,8 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/supportdesk
+#    url: jdbc:postgresql://db:5432/supportdesk
+    url: jdbc:postgresql://db.mchemprcytszpobfzueu.supabase.co:5432/postgres?user=postgres&password=Shubham@3133
     username: ${DB_USER}
     password: ${DB_PASSWORD}
 

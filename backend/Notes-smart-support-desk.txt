@@ -184,5 +184,28 @@ insert into users (username, password, role, enabled) values ('agent', '$2a$10$f
 ======================= deployment ==========================================================
 
 COREs base URL :security >SecurityConfig - config.setAllowedOrigins(List.of("https://your-frontend.vercel.app"));
+Superbase : DB password:Shubham@3133
+
+*updated it in application-prod.yml
+jdbc:postgresql://db.mchemprcytszpobfzueu.supabase.co:5432/postgres?user=postgres&password=Shubham@3133
+
+DB_URL = jdbc:postgresql://db.mchemprcytszpobfzueu.supabase.co:5432/postgres?sslmode=require
+
+DB_USERNAME = postgres
+
+DB_PASSWORD =Shubham@3133
+
+host:db.mchemprcytszpobfzueu.supabase.co
+port:5432
+database:postgres
+user:postgres
+
+
 
 =========================================================================
+
+
+
+
+
+

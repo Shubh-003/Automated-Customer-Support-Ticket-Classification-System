@@ -1,5 +1,7 @@
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\UserStatsDto.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\Ticket.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\repository\UserRepository.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\controller\AdminDashboardController.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\audit\AuditAspect.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\config\WebSocketConfig.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\LoginRequest.java
@@ -17,9 +19,12 @@ D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\model\Ticket
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\CustomAccessDeniedHandler.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\entity\User.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\AiResultValidator.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\controller\AdminAuditController.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\TicketRequest.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\entity\RefreshToken.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\controller\AdminUserController.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\controller\TicketController.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\UserStatsService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\controller\AuthController.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\repository\RefreshTokenRepository.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\security\SecurityConfig.java
@@ -27,7 +32,9 @@ D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\audit\Audita
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\GeminiClient.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\entity\AuditLog.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\SupportDeskApplication.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\DashboardStats.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\exception\GlobalExceptionHandler.java
+D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\DashboardService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\config\OpenApiConfig.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\service\TicketService.java
 D:\smart-support-desk\backend\src\main\java\com\example\supportdesk\dto\AiClassificationResult.java
