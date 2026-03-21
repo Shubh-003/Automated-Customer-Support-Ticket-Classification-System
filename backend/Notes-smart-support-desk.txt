@@ -7,14 +7,13 @@ Notes-smart-support-desk
                 .build();
     }
 =====ENV======
-DB_USER=postgres
-DB_PASSWORD=Shubham@3133
-DB_URL:jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres?user=postgres.mchemprcytszpobfzueu&password=Shubham@3133
+DB_USER = Your_Db_Name
+DB_PASSWORD = Your_DB_Password
 
-GEMINI_API_KEY=AIzaSyC4V1YEgAAWcT95Ybo4BQ16bq3_cgJxF58
+GEMINI_API_KEY = Your_ApiKey
 
-JWT_SECRET=a9f3e72d8c1b45f6e9a21d7c0b4f89e2a5c7d1f8e6b9a0d4c3f2e7b5a1c9
-JWT_EXPIRATION: 86400000
+JWT_SECRET = Your_Secret
+JWT_EXPIRATION: e.g.86400000
 
 
 -------------Project Run---------------------
@@ -193,7 +192,7 @@ insert into users (username, password, role, enabled) values ('agent', '$2a$10$f
 ==================================================
 ======================= deployment ==========================================================
 
-COREs base URL :security >SecurityConfig - config.setAllowedOrigins(List.of("https://your-frontend.vercel.app"));
+1. COREs base URL :security >SecurityConfig - config.setAllowedOrigins(List.of("https://your-frontend.vercel.app"));
 Superbase : DB password:Shubham@3133
 
 *updated it in application-prod.yml: 
@@ -210,18 +209,14 @@ port:5432
 database:postgres
 user:postgres
 
+2. connected DB in superbase
+3. created service in render provided ENV variable with "root:backend" and superbase DB_URL and updated in application-prod.yml.
+4. created .env in frontent for backend url like, VITE_API_URL=https://support-desk-backend-jsnh.onrender.com and
+   changed axiosClient api's base url to baseURL: `${import.meta.env.VITE_API_URL}/api`,
+4. frontend deployment on vercel: 
+	I. new project with framework:vite, root:frontend and env
 
 SPRING_PROFILES_ACTIVE=prod
-
-DB_USER=postgres
-DB_PASSWORD=Shubham@3133
-DB_URL:jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres?user=postgres.mchemprcytszpobfzueu&password=Shubham@3133
-
-GEMINI_API_KEY=AIzaSyC4V1YEgAAWcT95Ybo4BQ16bq3_cgJxF58
-
-JWT_SECRET=a9f3e72d8c1b45f6e9a21d7c0b4f89e2a5c7d1f8e6b9a0d4c3f2e7b5a1c9
-JWT_EXPIRATION: 86400000
-
 
 
 
@@ -229,7 +224,6 @@ jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres?user=postgr
 =========================================================================
 
 
-push yml to GitHub, render env already done just deploy latest comit manually
 
 
 
