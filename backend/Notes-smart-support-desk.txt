@@ -6,6 +6,16 @@ Notes-smart-support-desk
                 .baseUrl("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent")
                 .build();
     }
+=====ENV======
+DB_USER=postgres
+DB_PASSWORD=Shubham@3133
+DB_URL:jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres?user=postgres.mchemprcytszpobfzueu&password=Shubham@3133
+
+GEMINI_API_KEY=AIzaSyC4V1YEgAAWcT95Ybo4BQ16bq3_cgJxF58
+
+JWT_SECRET=a9f3e72d8c1b45f6e9a21d7c0b4f89e2a5c7d1f8e6b9a0d4c3f2e7b5a1c9
+JWT_EXPIRATION: 86400000
+
 
 -------------Project Run---------------------
 open project in inteligia
@@ -186,7 +196,7 @@ insert into users (username, password, role, enabled) values ('agent', '$2a$10$f
 COREs base URL :security >SecurityConfig - config.setAllowedOrigins(List.of("https://your-frontend.vercel.app"));
 Superbase : DB password:Shubham@3133
 
-*updated it in application-prod.yml
+*updated it in application-prod.yml: 
 jdbc:postgresql://db.mchemprcytszpobfzueu.supabase.co:5432/postgres?user=postgres&password=Shubham@3133
 
 DB_URL = jdbc:postgresql://db.mchemprcytszpobfzueu.supabase.co:5432/postgres?sslmode=require
@@ -201,11 +211,25 @@ database:postgres
 user:postgres
 
 
+SPRING_PROFILES_ACTIVE=prod
 
+DB_USER=postgres
+DB_PASSWORD=Shubham@3133
+DB_URL:jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres?user=postgres.mchemprcytszpobfzueu&password=Shubham@3133
+
+GEMINI_API_KEY=AIzaSyC4V1YEgAAWcT95Ybo4BQ16bq3_cgJxF58
+
+JWT_SECRET=a9f3e72d8c1b45f6e9a21d7c0b4f89e2a5c7d1f8e6b9a0d4c3f2e7b5a1c9
+JWT_EXPIRATION: 86400000
+
+
+
+
+jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres?user=postgres.mchemprcytszpobfzueu&password=Shubham@3133
 =========================================================================
 
 
-
+push yml to GitHub, render env already done just deploy latest comit manually
 
 
 
