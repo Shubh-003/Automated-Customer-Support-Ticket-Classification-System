@@ -68,15 +68,6 @@ Logout →
   7 days expiry
   Used only to generate new access token
 
-  Token Rotation (Advanced Security)
-    When refreshing:
-    Instead of just issuing new access token:
-    Revoke old refresh token
-    Create new refresh token
-  This prevents replay attacks.
-
-Blacklist Access Tokens (Optional but Elite Level):
-
 Access Token → short-lived → used for APIs
 Refresh Token → long-lived → used to get new access
 When refresh token dies:
@@ -92,13 +83,7 @@ RoleHierarchy Bean in securityConfig
 -----------
 PHASE 5 — AUDIT LOGGING
 Who did what, when, and from where?
-No manual logging inside controller. We use AOP (Aspect-Oriented Programming
-
-SWAGGER:
-Professional API documentation
-✔ Self-testable endpoints
-✔ Frontend developer integration
-✔ Easy demo for recruiters
+No manual logging inside controller. used AOP (Aspect-Oriented Programming)
 
 PHASE 8 — DOCKER PRODUCTION OPTIMIZATION
 Docker builds jar internally
@@ -130,7 +115,6 @@ git push
 --------------------------------------------------------------
 git filter-branch --force --index-filter "git rm --cached --ignore-unmatch .env" --prune-empty --tag-name-filter cat -- --all
 git push --force
-
 
 | Type     | Use            |
 | -------- | -------------- |
@@ -164,15 +148,15 @@ API = Show Pass → Enter
 
 
 Authorization and permission:
-| Action           | USER | AGENT | ADMIN |
-| ---------------- | ---- | ----- | ----- |
+| Action           | USER  | AGENT  | ADMIN   |
+| ---------------- | ----  | -----  | -----   |
 | Create Ticket    | ✅    | ✅     | ✅     |
 | View Own Ticket  | ✅    | ✅     | ✅     |
 | View All Tickets | ❌    | ✅     | ✅     |
 | Update Status    | ❌    | ✅     | ✅     |
 | Delete Ticket    | ❌    | ❌     | ✅     |
 
-DB tables :
+## DB tables :
 tickets
 users
 audit_logs
@@ -203,27 +187,15 @@ DB_URL = jdbc:postgresql://db.mchemprcytszpobfzueu.supabase.co:5432/postgres?ssl
 DB_USERNAME = postgres
 
 DB_PASSWORD =Shubham@3133
-
-host:db.mchemprcytszpobfzueu.supabase.co
-port:5432
-database:postgres
-user:postgres
+SPRING_PROFILES_ACTIVE=prod
 
 2. connected DB in superbase
 3. created service in render provided ENV variable with "root:backend" and superbase DB_URL and updated in application-prod.yml.
 4. created .env in frontent for backend url like, VITE_API_URL=https://support-desk-backend-jsnh.onrender.com and
    changed axiosClient api's base url to baseURL: `${import.meta.env.VITE_API_URL}/api`,
 4. frontend deployment on vercel: 
-	I. new project with framework:vite, root:frontend and env
+	I. new project with framework:vite, root:frontend and env.
 
-SPRING_PROFILES_ACTIVE=prod
+To update/change gemini apikey - go to render>Environment >set GEMINI_API_KEY -save and deploy or 
 
-
-
-jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres?user=postgres.mchemprcytszpobfzueu&password=Shubham@3133
 =========================================================================
-
-
-
-
-

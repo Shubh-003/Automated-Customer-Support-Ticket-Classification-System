@@ -22,7 +22,7 @@ http://localhost:5174/    - in config>SecurityConfig comment off
 =============================
 ## How will USER vs ADMIN/AGENT UI be different?
 Read the role from JWT login response.
-Your backend already returns role inside the token (or user info).
+backend returns role inside the token.
 Example login response:
 {
   "accessToken": "...",
@@ -52,8 +52,8 @@ store token at localstorage:  const token = localStorage.getItem("accessToken");
 RegisterPage: usestte: usename and password then handleSubmit for axios.post("/auth/register")
 
 CORS configuration in securityConfig.java- CorsConfigurationSource bean
-🔐 Important Production Note:
-Later in production we usually allow: https://yourdomain.com  not *.
+* Important Production Note:
+Later in production usually allow: https://yourdomain.com  not *.
 Example: config.setAllowedOrigins(List.of("https://supportdesk.com"));
 
 
@@ -69,11 +69,6 @@ PUT /api/tickets/{id}/status
 phase 7: WebSockets for real-time ticket updates
 Backend publishes WebSocket event -> All connected clients receive event-> React updates UI instantly
 
-Total Tickets
-Open Tickets
-Resolved Tickets
-Active Agents
-Recent Tickets
 ====================================
 // First add path here for new functionality then add route in app.jsx
 // then add lable in AdminLayout
